@@ -1,20 +1,18 @@
-use juniper::{FieldResult, FieldError, RootNode, EmptyMutation};
+use crate::schema::wordpress::common::{Rendered};
 
-#[derive(Debug, Serialize, Deserialize, GraphQLObject)]
-pub struct PostQuery {
-    pub id: i32,
-    pub status: String
-}
+// At the moment serde does not serialize traits or impl
+// NewPost and NewPostMut are placeholder structs for an empty RootMutation
 
 #[derive(GraphQLInputObject)]
 #[graphql(description = "A humanoid creature in the Star Wars universe")]
 pub struct NewPost {
-    pub title: String
+    pub id: i32
 }
 
-#[derive(Debug, Serialize, Deserialize, GraphQLObject)]
-pub struct Rendered {
-  rendered: String
+#[derive(GraphQLObject)]
+#[graphql(description = "A humanoid creature in the Star Wars universe")]
+pub struct NewPostMut {
+    pub id: i32
 }
 
 #[derive(Debug, Serialize, Deserialize, GraphQLObject)]
@@ -30,4 +28,5 @@ pub struct Post {
   pub author: i32,
   pub featured_media: i32
 }
+
 

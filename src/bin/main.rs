@@ -12,18 +12,12 @@ use actix_web::{
 };
 use futures::future::Future;
 use juniper::http::graphiql::graphiql_source;
-use juniper::http::GraphQLRequest;
-use libRust::schema::schema::{QueryRoot, Schema, create_schema};
+use libRust::schema::schema::{Schema, create_schema};
 use libRust::schema::common::{GraphQLData};
-use serde::{Deserialize, Serialize};
 
 struct AppState {
     executor: Addr<GraphQLExecutor>,
 }
-
-
-
-
 
 pub struct GraphQLExecutor {
     schema: std::sync::Arc<Schema>,
